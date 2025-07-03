@@ -1,0 +1,23 @@
+const PERMISSIONS = {
+  MANAGE_USERS: "manage_users",
+  APPROVE_JOB_ROLE: "approve_job_role",
+  VIEW_PROPERTIES: "view_properties",
+  EDIT_PROPERTIES: "edit_properties",
+  DELETE_PROPERTIES: "delete_properties",
+  ADD_PROPERTIES: "add_properties",
+};
+
+const ROLE_PERMISSIONS = {
+  admin: [
+    PERMISSIONS.MANAGE_USERS,
+    PERMISSIONS.APPROVE_JOB_ROLE,
+    PERMISSIONS.VIEW_PROPERTIES,
+    PERMISSIONS.EDIT_PROPERTIES,
+    PERMISSIONS.DELETE_PROPERTIES,
+    PERMISSIONS.ADD_PROPERTIES,
+  ],
+  employee: [PERMISSIONS.VIEW_PROPERTIES, PERMISSIONS.ADD_PROPERTIES],
+  buyer: [],
+};
+
+module.exports = { PERMISSIONS, ROLE_PERMISSIONS };
