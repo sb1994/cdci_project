@@ -1,10 +1,10 @@
 const express = require("express");
+require("./loadEnv");
 const app = express();
 const jwt = require("jsonwebtoken");
 const cors = require("cors");
 const fs = require("fs");
 const path = require("path");
-
 const { traceMiddleware } = require("./v1/utils/utils");
 app.use(traceMiddleware);
 
@@ -19,10 +19,9 @@ const jobApplicationRoutesV1 = require("./v1/routes/jobApplicationRoutes");
 
 const { default: mongoose } = require("mongoose");
 
-require("dotenv").config();
-
 app.use(passport.initialize());
 // Mongo DB Connections
+
 mongoose
   .connect(
     process.env.DB_URI || "mongodb://localhost:27017/boyler_real_estate",
@@ -33,6 +32,7 @@ mongoose
   )
   .then((response) => {
     console.log("MongoDB Connection Succeeded.");
+    console.log("db url: " + process.env.DB_URI);
   })
   .catch((error) => {
     console.log("Error in DB connection: " + error);
