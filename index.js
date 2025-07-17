@@ -32,7 +32,7 @@ mongoose
   )
   .then((response) => {
     console.log("MongoDB Connection Succeeded.");
-    console.log("db url: " + process.env.DB_URI);
+    console.log(process.env.DB_URI);
   })
   .catch((error) => {
     console.log("Error in DB connection: " + error);
@@ -45,7 +45,7 @@ app.use(express.json());
 //test route
 //version 1
 app.use("/api/v1/users", userRoutesV1);
-app.use("/api/v1/property", propertyRoutesV1);
+app.use("/api/v1/properties", propertyRoutesV1);
 app.use("/api/v1/departments", departmentRoutesV1);
 app.use("/api/v1/jobroles", jobRoleRoutesV1);
 app.use("/api/v1/jobpostings", jobPostingRoutesV1);

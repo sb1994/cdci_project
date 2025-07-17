@@ -16,7 +16,11 @@ const opts = {
 passport.use(
   new JwtStrategy(opts, async (req, jwt_payload, done) => {
     try {
+      console.log();
+
       const user = await User.findById(jwt_payload._id).select("-password");
+
+      // console.log(user);
 
       if (!user) {
         logger.error({
