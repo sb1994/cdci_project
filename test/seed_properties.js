@@ -5,12 +5,16 @@ require("dotenv").config();
 
 // Mongo DB Connections
 mongoose
-  .connect(process.env.DB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect(
+    "mongodb+srv://sean94:nWfd9n56UFEV54SC@cluster0.3d1pt.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    }
+  )
   .then((response) => {
     console.log("MongoDB Connection Succeeded.");
+    console.log(response.model.db.name);
   })
   .catch((error) => {
     console.log("Error in DB connection: " + error);

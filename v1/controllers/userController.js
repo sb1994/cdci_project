@@ -7,6 +7,8 @@ const path = require("path"); // Import the path module
 const { PERMISSIONS } = require("../config/permissions");
 const { isEmpty } = require("../utils/utils");
 const logger = require("../utils/logger");
+const { log } = require("util");
+const { default: mongoose } = require("mongoose");
 const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -152,8 +154,12 @@ const createAdminUser = async (req, res) => {
   }
 };
 const getUserById = async (req, res) => {
+  console.log("Get user by id called");
   let { id } = req.params;
   let { user } = req;
+  console.log(id);
+
+  // console.log(user);
 
   if (isEmpty(id)) {
     logger.error({
@@ -174,6 +180,10 @@ const getUserById = async (req, res) => {
   try {
     const selectedUser = await User.findById(id);
 
+    // res.status(200).json({
+    //   msg: "get selected user",
+    //   user: selectedUser,
+    // });
     if (!selectedUser) {
       logger.info({
         data: {
@@ -200,7 +210,7 @@ const getUserById = async (req, res) => {
       },
     });
 
-    res.status(200).json(selectedUser);
+    res.status(200).json({ msg: "get selected user", selectedUser });
   } catch (error) {
     logger.error({
       data: {
@@ -213,7 +223,7 @@ const getUserById = async (req, res) => {
         mess: error.message,
       },
     });
-    res.status(500).json({ msg: error });
+    return res.status(500).json({ msg: error.message });
   }
 };
 
