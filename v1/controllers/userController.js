@@ -9,6 +9,12 @@ const { isEmpty } = require("../utils/utils");
 const logger = require("../utils/logger");
 const { log } = require("util");
 const { default: mongoose } = require("mongoose");
+
+const testCICD = async (req, res) => {
+  res.status(200).json({
+    msg: "this is to test that the cicd flow is working",
+  });
+};
 const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -295,4 +301,5 @@ module.exports = {
   getAllUsers,
   loginUser,
   getUserById,
+  testCICD,
 };

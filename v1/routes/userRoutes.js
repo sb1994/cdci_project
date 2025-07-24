@@ -5,12 +5,14 @@ const {
   loginUser,
   getUserById,
   getAllUsers,
+  testCICD,
 } = require("../controllers/userController");
 const passport = require("passport");
 const router = express.Router();
 
 //login user
 router.post("/login", loginUser);
+router.get("/test", testCICD);
 router.get("/", passport.authenticate("jwt", { session: false }), getAllUsers);
 router.get(
   "/:id",
