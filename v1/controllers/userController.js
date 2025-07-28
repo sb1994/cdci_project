@@ -12,7 +12,7 @@ const { default: mongoose } = require("mongoose");
 
 const testCICD = async (req, res) => {
   res.status(200).json({
-    msg: "this is to test that the cicd flow is working",
+    msg: "this is to test that the cicd flow is working and is updated",
   });
 };
 const loginUser = async (req, res) => {
@@ -286,6 +286,7 @@ const createEmployee = async (req, res) => {
 const getAllUsers = async (req, res) => {
   try {
     const users = await User.find().populate("jobRole");
+
     res.json({ success: true, data: users });
   } catch (error) {
     res
