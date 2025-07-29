@@ -16,6 +16,8 @@ const testCICD = async (req, res) => {
   });
 };
 const loginUser = async (req, res) => {
+  console.log("");
+
   try {
     const { email, password } = req.body;
 
@@ -27,7 +29,7 @@ const loginUser = async (req, res) => {
           apiAction: "GetAPIToken",
           apiEndpoint: req.originalUrl,
           method: req.method,
-          mess: "EMAIL AND PASSWORD FIELDS REQUIRED",
+          mess: "EMAIL AND PASSWORD FIELDS REQUIRED AND CHECK ACTION flow Works",
         },
       });
       res
