@@ -5,3 +5,5 @@ node_modules
 .prod.env
 
 app.log
+
+*.pem

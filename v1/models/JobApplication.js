@@ -50,6 +50,11 @@ const JobApplicationSchema = new mongoose.Schema({
   },
   changedAt: { type: Date, default: Date.now },
   changedBy: { type: mongoose.Schema.Types.ObjectId, ref: "User" }, // HR/Admin user
+  contractId: { type: String }, // DocuSign envelope ID
+  contractStatus: {
+    type: String,
+    enum: ["sent", "delivered", "signed", "completed", "declined", "voided"],
+  },
 
   createdAt: {
     type: Date,

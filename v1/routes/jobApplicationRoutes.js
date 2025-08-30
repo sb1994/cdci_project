@@ -7,6 +7,8 @@ const {
   addApplicantShortlist,
   getShortlistedApplicantsByJobPostingID,
   rejectJobApplication,
+  approveJobApplication,
+  offerJobApplication,
 } = require("../controllers/jobApplicationController");
 const passport = require("passport");
 const { verifyAdminOrHR } = require("../utils/utils");
@@ -40,5 +42,11 @@ router.post(
   passport.authenticate("jwt", { session: false }),
   // verifyAdminOrHR,
   rejectJobApplication
+); // Restricted
+router.post(
+  "/:app_id/approve",
+  passport.authenticate("jwt", { session: false }),
+  // verifyAdminOrHR,
+  offerJobApplication
 ); // Restricted
 module.exports = router;
