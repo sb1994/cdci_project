@@ -38,14 +38,22 @@ const JobApplicationSchema = new mongoose.Schema({
   status: {
     type: String,
     enum: [
-      "pending",
-      "reviewed",
-      "interviewing",
+      "submitted",
+      "shortlisted",
+      "in_review",
+      "interview",
       "offered",
-      "rejected",
       "hired",
+      "rejected",
     ],
-    default: "pending",
+    default: "submitted",
+  },
+  changedAt: { type: Date, default: Date.now },
+  changedBy: { type: mongoose.Schema.Types.ObjectId, ref: "User" }, // HR/Admin user
+  contractId: { type: String }, // DocuSign envelope ID
+  contractStatus: {
+    type: String,
+    enum: ["sent", "delivered", "signed", "completed", "declined", "voided"],
   },
 
   createdAt: {

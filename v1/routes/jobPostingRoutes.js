@@ -15,7 +15,7 @@ const { verifyAdminOrHR } = require("../utils/utils");
 router.post(
   "/",
   passport.authenticate("jwt", { session: false }),
-  verifyAdminOrHR,
+  // verifyAdminOrHR,
   createJobPosting
 ); // Require HR/Admin middleware if needed
 router.get("/", getAllJobPostings);
