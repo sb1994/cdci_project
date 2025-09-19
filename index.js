@@ -18,6 +18,7 @@ const jobPostingRoutesV1 = require("./v1/routes/jobPostingRoutes");
 const jobApplicationRoutesV1 = require("./v1/routes/jobApplicationRoutes");
 
 const { default: mongoose } = require("mongoose");
+const { docusignWebhook } = require("./v1/controllers/webhookController");
 
 app.use(passport.initialize());
 // Mongo DB Connections
@@ -51,6 +52,7 @@ app.use("/api/v1/jobroles", jobRoleRoutesV1);
 app.use("/api/v1/jobpostings", jobPostingRoutesV1);
 app.use("/api/v1/jobapplications", jobApplicationRoutesV1);
 
+app.post("/webhook/docusign", docusignWebhook);
 // Connection
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, "0.0.0.0", () => {
